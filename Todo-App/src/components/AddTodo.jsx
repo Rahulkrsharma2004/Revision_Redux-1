@@ -1,11 +1,13 @@
 // src/components/AddTodo.js
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addTodo } from '../redux/todoAction';
 import { Button, Input } from '@chakra-ui/react';
+import LoginForm from './Login';
 
 const AddTodo = () => {
   const [title, setTitle] = useState('');
+  const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
   const dispatch = useDispatch();
 
   const handleChange = (e) => {
@@ -19,13 +21,19 @@ const AddTodo = () => {
 
   return (
     <div>
-      <Input
-        variant='outline'
-        placeholder='Write Todo'
-        value={title}
-        onChange={handleChange}
-      />
-      <Button onClick={handleAddTodo}>Add Todo</Button>
+      {isAuthenticated ? (
+        <div>
+          <Input
+            type='text'
+            value={title}
+            onChange={handleChange}
+            placeholder='Write Todo'
+          />
+          <Button onClick={handleAddTodo}>Add Todo</Button>
+        </div>
+      ) : (
+        <LoginForm/>
+      )}
     </div>
   );
 };

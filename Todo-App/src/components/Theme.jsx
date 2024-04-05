@@ -12,7 +12,7 @@ const ThemeToggle = () => {
   };
 
   return (
-    <Button onClick={handleToggle}>
+    <Button onClick={handleToggle} className={darkMode ? 'dark' : 'light'}>
       {darkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
     </Button>
   );
