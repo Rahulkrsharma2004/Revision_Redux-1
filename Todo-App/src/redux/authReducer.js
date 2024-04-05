@@ -1,4 +1,4 @@
-// src/reducers/authReducer.js
+
 import * as actionTypes from './actionTypes';
 
 const initialState = {
